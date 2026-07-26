@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Surprise For You ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            color: #ff4b2b;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+            bottom: -20px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Balloons Section */
+        .balloon-section {
+            margin: 25px 0;
+        }
+
+        .balloon-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .balloon {
+            width: 50px;
+            height: 65px;
+            background-color: #ff4081;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            cursor: pointer;
+            position: relative;
+            animation: bounce 2s infinite alternate ease-in-out;
+            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 24px;
+            width: 2px;
+            height: 12px;
+            background-color: #777;
+        }
+
+        .balloon:nth-child(2) { background-color: #7c4dff; animation-delay: 0.4s; }
+        .balloon:nth-child(3) { background-color: #00e676; animation-delay: 0.8s; }
+        .balloon:nth-child(4) { background-color: #ffab00; animation-delay: 1.2s; }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
+        }
+
+        /* Card Box */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            margin: 20px 0;
+        }
+
+        .card h2 {
+            color: #d63384;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            font-size: 0.98rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        /* Question Section */
+        .question-card {
+            padding: 25px 15px;
+            position: relative;
+            min-height: 180px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            position: relative;
+            min-height: 60px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.1s;
+        }
+
+        .btn-yes {
+            background-color: #ff4081;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 64, 129, 0.3);
+            z-index: 2;
+        }
+
+        .btn-no {
+            background-color: #6c757d;
+            color: white;
+            z-index: 10;
+        }
+
+        /* Photos */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .photo-card {
+            width: 100%;
+            height: 130px;
+            border-radius: 12px;
+            background-color: #eee;
+            overflow: hidden;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Hey Beautiful! ❤️</h1>
+            <p class="subtitle">A tiny surprise made just for you...</p>
+        </header>
+
+        <!-- Balloon Pop -->
+        <div class="card balloon-section">
+            <p style="font-weight: 600; color: #ff4081;">🎈 Tap balloons to pop them! 🎈</p>
+            <div class="balloon-container">
+                <div class="balloon" onclick="popBalloon(this)"></div>
+                <div class="balloon" onclick="popBalloon(this)"></div>
+                <div class="balloon" onclick="popBalloon(this)"></div>
+                <div class="balloon" onclick="popBalloon(this)"></div>
+            </div>
+        </div>
+
+        <!-- Love Message -->
+        <div class="card">
+            <h2>To My Special Person ✨</h2>
+            <p>
+                तुम मेरी ज़िंदगी का वो ख़ूबसूरत हिस्सा हो जिसे मैं हर पल सहेज कर रखना चाहता हूँ। 
+                तुम्हारी एक मुस्कान मेरा पूरा दिन बना देती है। 
+                <br><br>
+                <b>Thank you for being my happy place! ❤️</b>
+            </p>
+        </div>
+
+        <!-- Photos -->
+        <div class="card">
+            <h2>Our Memories 📸</h2>
+            <div class="photo-gallery">
+                <div class="photo-card">
+                    <img src="https://picsum.photos/200/200?random=1" alt="Memory 1">
+                </div>
+                <div class="photo-card">
+                    <img src="https://picsum.photos/200/200?random=2" alt="Memory 2">
+                </div>
+            </div>
+        </div>
+
+        <!-- Do You Love Me Game -->
+        <div class="card question-card">
+            <h2>Do you love me? 🥺</h2>
+            <div class="btn-group">
+                <button class="btn btn-yes" onclick="sayYes()">Yes! 💕</button>
+                <button class="btn btn-no" id="noBtn" onclick="moveNoButton()" ontouchstart="moveNoButton()">No 😜</button>
+            </div>
+        </div>
+
+        <footer>
+            Made with ❤️ specially for you
+        </footer>
+    </div>
+
+    <script>
+        // Floating Hearts Effect
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 90 + 5 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 400);
+
+        // Balloon Pop Effect
+        function popBalloon(balloon) {
+            balloon.style.transform = 'scale(0)';
+            balloon.style.transition = 'transform 0.2s ease-out';
+            setTimeout(() => {
+                alert('🎉 A huge hug for you! ❤️');
+            }, 200);
+        }
+
+        // Running No Button for Mobile & PC
+        function moveNoButton() {
+            const noBtn = document.getElementById('noBtn');
+            const padding = 50;
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = Math.max(10, x) + 'px';
+            noBtn.style.top = Math.max(10, y) + 'px';
+        }
+
+        // Yes Button Click
+        function sayYes() {
+            alert('I knew it! Love you so much baby! 😘❤️');
+        }
+    </script>
+</body>
+</html>
